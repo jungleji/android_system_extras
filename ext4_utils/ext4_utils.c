@@ -430,7 +430,13 @@ u64 get_file_size(int fd)
 u64 parse_num(const char *arg)
 {
 	char *endptr;
-	u64 num = strtoull(arg, &endptr, 10);
+	u64 num;
+        if (!strncmp(arg, "0x", 2)) {
+            num = strtoull(arg, &endptr, 16);
+        } else {
+            num = strtoull(arg, &endptr, 10);
+        }
+
 	if (*endptr == 'k' || *endptr == 'K')
 		num *= 1024LL;
 	else if (*endptr == 'm' || *endptr == 'M')

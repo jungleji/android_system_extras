@@ -248,8 +248,11 @@ static u32 build_directory_structure(const char *full_path, const char *dir_path
 		} else if (dentries[i].file_type == EXT4_FT_SYMLINK) {
 			entry_inode = make_link(dentries[i].full_path, dentries[i].link);
 		} else {
-			error("unknown file type on %s", dentries[i].path);
+			/* error("unknown file type on %s", dentries[i].path); */
+			printf("unknown file type on %s", dentries[i].path);
 			entry_inode = 0;
+			continue;
+
 		}
 		*dentries[i].inode = entry_inode;
 
