@@ -431,7 +431,7 @@ u64 parse_num(const char *arg)
 {
 	char *endptr;
 	u64 num;
-        if (!strncmp(arg, "0x", 2)) {
+        if (!strncmp(arg, "0x", 2) || !strncmp(arg, "0X", 2)) {
             num = strtoull(arg, &endptr, 16);
         } else {
             num = strtoull(arg, &endptr, 10);
